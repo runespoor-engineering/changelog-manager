@@ -1,187 +1,197 @@
 <div align="center">
-  <h1>@runespoorstack/{lib-name}</h1>
-  <p>A modern TypeScript library template with production-ready tooling and best practices.</p>
+  <h1>@runespoorstack/changelog-manager</h1>
+  <p>The Runespoor CLI for changelog management and semantic versioning.</p>
   <div>
      <a href="https://www.buymeacoffee.com/borisshulyak" target="_blank">
       <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" >
     </a>
   </div>
-  <a href="https://github.com/runespoor-engineering/{repo-name}/blob/main/LICENSE">
-    <img alt="GitHub License" src="https://img.shields.io/github/license/runespoor-engineering/{repo-name}">
+  <a href="https://github.com/runespoor-engineering/changelog-manager/blob/main/LICENSE">
+    <img alt="GitHub License" src="https://img.shields.io/github/license/runespoor-engineering/changelog-manager">
   </a>
-  <a href="https://github.com/runespoor-engineering/{repo-name}/issues">
-    <img alt="GitHub issues" src="https://img.shields.io/github/issues/runespoor-engineering/{repo-name}?color=5d2de0">
+  <a href="https://github.com/runespoor-engineering/changelog-manager/issues">
+    <img alt="GitHub issues" src="https://img.shields.io/github/issues/runespoor-engineering/changelog-manager?color=5d2de0">
   </a>
-  <a href="https://www.npmjs.com/package/@runespoorstack/{lib-name}">
-    <img alt="npm downloads" src="https://img.shields.io/npm/dw/@runespoorstack/{lib-name}">
+  <a href="https://www.npmjs.com/package/@runespoorstack/changelog-manager">
+    <img alt="npm downloads" src="https://img.shields.io/npm/dw/@runespoorstack/changelog-manager">
   </a>
 </div>
 
-## 🚀 TS Library Template
+## Table of Contents
 
-This is a comprehensive **TypeScript library template** designed to jumpstart your npm package development with modern tooling, best practices, and production-ready configurations.
+- [Table of Contents](#table-of-contents)
+- [Core Commands](#core-commands)
+- [Key Features](#key-features)
+- [Use Cases](#use-cases)
+- [Usage](#usage)
+  - [Install](#install)
+  - [Setup](#setup)
+  - [Manual commands](#manual-commands)
+- [🛠️ Contributing](#️-contributing)
+- [💕 Special Thanks](#-special-thanks)
+- [❤️ Support or Donate](#️-support-or-donate)
 
-## ✨ Features
+A specialized CLI tool (`@runespoor/changelog-manager`) designed for managing changelogs and semantic versioning in single repositories, particularly optimized for Continuous Integration and Trunk Based Development workflows.
 
-### 🔧 **Modern Build System**
+## Core Commands
 
-- **TypeScript** - Full TypeScript support with strict mode and ESNext target
-- **tsup** - Fast bundler with CommonJS and ESM output formats
-- **Declaration files** - Automatic `.d.ts` generation for TypeScript consumers
+1. `rune change`
+   - Interactive command to document changes before merging
+   - Generates timestamped JSON files containing change details
+   - Captures change type (major/minor/patch/none), description, author, and optional issue links
 
-### 🧪 **Testing & Quality**
+2. `rune verify`
+   - CI-focused validation command
+   - Ensures proper change files exist and are valid
+   - Verifies branch differences and file naming conventions
 
-- **Vitest** - Lightning-fast unit testing with coverage reporting
-- **Biome** - Ultra-fast linting, formatting, and import organization
-- **Coverage reporting** - V8 provider with HTML, LCOV, and JSON outputs
-- **Codecov integration** - Automated coverage tracking and reporting
+3. `rune apply`
+   - Processes accumulated change files
+   - Automatically bumps version numbers based on change types
+   - Updates CHANGELOG.md and package.json
+   - Commits and pushes changelogs
 
-### 🔄 **Development Workflow**
+## Key Features
 
-- **Husky** - Git hooks for code quality enforcement
-- **lint-staged** - Run linters on staged files only
-- **GitHub Actions** - Complete CI/CD workflows for testing and publishing
-- **Changelog management** - Automated changelog generation with Runespoor tools
+- **Automated Version Management**: Intelligently handles semantic versioning based on change types
+- **Standardized Change Documentation**: Enforces consistent changelog formats
+- **CI/CD Integration**: Built-in commands for verification in CI pipelines
+- **Issue Tracking**: Optional integration with issue tracking systems
+- **Git Integration**: Automated commit and push functionality
+- **Multi Changelogs**: Ability to keep separate changelogs for separate purposes.
 
-### 📦 **Package Management**
+## Use Cases
 
-- **pnpm** - Fast, disk space efficient package manager
-- **Node.js 20+** - Modern Node.js runtime support
-- **ESM/CJS dual exports** - Support for both module systems
+- Maintaining consistent changelog entries across team members
+- Automating version bumps based on change significance
+- Enforcing change documentation in CI/CD pipelines
+- Tracking changes with associated issue references
+- Standardizing release documentation
 
-## 🏁 Quick Start
+The tool essentially automates the often manual and error-prone process of maintaining changelogs and version numbers in a development workflow.
 
-### 1. **Use this template**
+## Usage
 
-Click "Use this template" button or clone this repository:
+### Install
 
-```bash
-git clone https://github.com/runespoor-engineering/ts-lib-template.git my-awesome-lib
-cd my-awesome-lib
+```shell
+npm install --save-dev @runespoorstack/changelog-manager
 ```
 
-### 2. **Replace placeholders**
+### Setup
 
-Replace the following placeholders throughout the project:
+Add npm scripts to your `package.json` file.
 
-- `{lib-name}` - Your library name (e.g., `my-awesome-lib`)
-- `{repo-name}` - Your repository name (e.g., `my-awesome-lib`)
-
-**Files to update:**
-
-- `package.json` - Package name, repository URLs
-- `README.md` - Title, badges, and links
-- `SECURITY.md` - Security policy references
-- `CONTRIBUTING.md` - Clone command
-- `.github/workflows/reusable-test.yml` - Codecov slug
-
-### 3. **Install dependencies**
-
-```bash
-pnpm install
+```json
+{
+  ...
+  "scripts": {
+    ...
+    "changelog:change": "rune change --issueLinkPattern https://jira.com/browse/{{issueId}}",
+    "changelog:verify": "rune verify",
+    "changelog:apply": "rune apply"
+  }
+  ...
+}
 ```
 
-### 4. **Create your library**
+Integrate `rune verify` command with your Merge Request CI (GitHub Actions example). 
+Make sure to add this job on the **beginning** of your pipeline:
 
-Create a `src` directory and start building your library:
+```yml
+name: Merge Request CI
+on:
+  pull_request:
+    branches:
+      - '*'
 
-```bash
-mkdir src
-echo "export const hello = () => 'Hello, World!';" > src/index.ts
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  changelog-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Verify Changelog
+      run: npm run changelog:verify -- --sourceBranch origin/${{ github.head_ref || github.ref_name }} -- --remoteName origin
+
+  ...
+
 ```
 
-### 5. **Start developing**
+Integrate `rune apply` command with your Main CI (GitHub Actions example).
+Authorize the git user and personal access token as a secret to be able to push to the repository. [Read the Guide](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
+I suggest creating the separate service account for such purposes.
+Make sure to add this job to the **end** of your pipeline:
 
-```bash
-# Run tests
-pnpm test
+```yml
+name: Main CI
+on:
+  push:
+    branches:
+      - main
 
-# Build your library
-pnpm build
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref == 'refs/heads/main' }}
 
-# Lint and format
-pnpm lint:fix
-pnpm format:fix
+
+jobs:
+
+  ...
+
+  changelog-apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 2
+        token: ${{ secrets.ACTIONS_PTA }}
+
+    - name: Git set author name
+      run: git config --global user.name "ServiceAccount"
+
+    - name: Git set author email
+      run: git config --global user.email "serviceaccount@gmail.com"
+
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Apply Changelog
+      run: npm run changelog:apply
 ```
 
-## 📁 Project Structure
+### Manual commands
 
-```
-your-library/
-├── src/                     # Your library source code
-├── dist/                    # Built output (auto-generated)
-├── .github/                 # GitHub workflows and templates
-│   ├── workflows/           # CI/CD workflows
-│   └── ISSUE_TEMPLATE/      # Issue templates
-├── .husky/                  # Git hooks
-├── package.json             # Package configuration
-├── tsconfig.json            # TypeScript configuration
-├── tsup.config.ts           # Build configuration
-├── vitest.config.mjs        # Test configuration
-├── biome.json               # Linting and formatting config
-└── Documentation files      # README, CONTRIBUTING, etc.
+Run `rune change` command and commit the resulted files to provide change files, before opening any Merge Request:
+
+```shell
+npm run changelog:change
 ```
 
-## 🛠️ Available Scripts
-
-| Script                  | Description                      |
-| ----------------------- | -------------------------------- |
-| `pnpm build`            | Build the library for production |
-| `pnpm test`             | Run all tests                    |
-| `pnpm test --ui`        | Run tests with UI                |
-| `pnpm lint`             | Check code for linting issues    |
-| `pnpm lint:fix`         | Fix linting issues automatically |
-| `pnpm format`           | Check code formatting            |
-| `pnpm format:fix`       | Fix formatting issues            |
-| `pnpm changelog:change` | Add a new changelog entry        |
-| `pnpm unimported`       | Find unused dependencies         |
-
-## 🔧 Configuration
-
-### **TypeScript**
-
-- Strict mode enabled
-- ESNext target and module
-- Declaration files generated
-- Source maps included
-
-### **Build Output**
-
-- CommonJS (`dist/index.js`)
-- ES Modules (`dist/index.mjs`)
-- TypeScript declarations (`dist/index.d.ts`)
-- Minified for production
-
-### **Testing**
-
-- Global test environment
-- Node.js environment
-- Coverage thresholds configured
-- HTML and LCOV reports
-
-## 🚀 Publishing
-
-The template includes automated publishing workflows:
-
-1. **Manual publish** - Trigger releases manually
-2. **Version management** - Automated version bumping
-3. **NPM publishing** - Secure token-based publishing
-4. **GitHub releases** - Automatic release notes
-
-## 🏗️ What's Included
-
-- ✅ TypeScript configuration
-- ✅ Modern build system (tsup)
-- ✅ Testing framework (Vitest)
-- ✅ Code quality tools (Biome)
-- ✅ Git hooks (Husky + lint-staged)
-- ✅ GitHub Actions workflows
-- ✅ Code coverage reporting
-- ✅ Dependency management
-- ✅ Security policies
-- ✅ Contributing guidelines
-- ✅ Issue templates
-- ✅ Funding configuration
+For more information, read the technical [documentation](https://runespoor-engineering.github.io/runespoorstack/docs/cli/changelog-manager/tech-insights).
 
 ## 🛠️ Contributing
 

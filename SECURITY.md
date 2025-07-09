@@ -4,7 +4,7 @@
 
 | Package                                                                | Version | Supported          |
 | ---------------------------------------------------------------------- | ------- | ------------------ |
-| [{lib-name}](https://www.npmjs.com/package/@runespoorstack/{lib-name}) | 0.1.0   | :white_check_mark: |
+| [changelog-manager](https://www.npmjs.com/package/@runespoorstack/changelog-manager) | 0.1.0   | :white_check_mark: |
 
 ## Reporting a Vulnerability
 

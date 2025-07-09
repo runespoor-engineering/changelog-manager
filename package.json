@@ -1,7 +1,7 @@
 {
-	"name": "@runespoorstack/{lib-name}",
-	"version": "0.0.0",
-	"description": "",
+	"name": "@runespoorstack/changelog-manager",
+	"version": "0.9.3",
+	"description": "The Runespoor CLI for changelog management and semantic versioning.",
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
 	"types": "dist/index.d.ts",
@@ -23,7 +23,15 @@
 		"changelog:apply": "rune apply",
 		"unimported": "pnpm dlx unimported"
 	},
+	"bin": {
+		"rune": "dist/index.js"
+	},
 	"dependencies": {
+		"commander": "13.1.0",
+		"@inquirer/input": "4.1.6",
+		"@inquirer/select": "4.0.9",
+		"@inquirer/confirm": "5.1.6",
+		"semver": "7.7.1"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.1.1",
@@ -37,13 +45,13 @@
 		"typescript": "5.4.5",
 		"vitest": "3.2.4"
 	},
-	"homepage": "https://github.com/runespoor-engineering/{repo-name}/#readme",
+	"homepage": "https://github.com/runespoor-engineering/changelog-manager/#readme",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/runespoor-engineering/{repo-name}"
+		"url": "git+https://github.com/runespoor-engineering/changelog-manager"
 	},
 	"bugs": {
-		"url": "https://github.com/runespoor-engineering/{repo-name}/issues"
+		"url": "https://github.com/runespoor-engineering/changelog-manager/issues"
 	},
 	"author": {
 		"name": "BorysShulyak",
@@ -58,10 +66,10 @@
 		}
 	],
 	"keywords": [
-		"eslint",
-		"cli",
-		"javascript",
-		"linter",
+		"changelog",
+		"generator",
+		"semver",
+		"versioning",
 		"runespoor"
 	],
 	"license": "MIT",

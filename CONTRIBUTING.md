@@ -44,7 +44,7 @@ Before submitting a pull request, consider `MR checklist` is fully resolved. You
 Clone repository:
 
 ```shell
-git clone git@github.com:runespoor-engineering/{repo-name}.git
+git clone git@github.com:runespoor-engineering/changelog-manager.git
 ```
 
 Specify how to reconcile divergent branches.

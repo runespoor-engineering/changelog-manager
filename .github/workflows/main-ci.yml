@@ -1,0 +1,26 @@
+name: Main CI
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '.cursor/**'
+      - '.prompt/**'
+      - 'drawio/**'
+      - 'excalidraw/**'
+      - '.coderabbit.yaml'
+      - '.unimportedrc.json'
+      - 'README.md'
+      - 'changes/**'
+      - 'CHANGELOG.*'
+      - 'codecov.yml'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref == 'refs/heads/main' }}
+
+jobs:
+  test:
+    uses: ./.github/workflows/reusable-test.yml
+    with:
+      type: main

@@ -1,0 +1,72 @@
+{
+	"name": "@runespoorstack/{lib-name}",
+	"version": "0.0.0",
+	"description": "",
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"private": false,
+	"scripts": {
+		"prepare": "husky install",
+		"build": "tsup",
+		"test": "vitest run",
+		"lint": "biome lint",
+		"lint:fix": "biome lint --write --unsafe",
+		"lint:ci": "biome ci --formatter-enabled=false --assist-enabled=false --enforce-assist=false",
+		"format": "biome format",
+		"format:fix": "biome format --write",
+		"changelog:change": "rune change",
+		"changelog:verify": "rune verify",
+		"changelog:apply": "rune apply",
+		"unimported": "pnpm dlx unimported"
+	},
+	"dependencies": {
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.1.1",
+		"@runespoorstack/changelog-manager": "0.9.3",
+		"@types/node": "20.14.8",
+		"@vitest/coverage-v8": "3.2.4",
+		"@vitest/ui": "3.2.4",
+		"husky": "9.1.7",
+		"lint-staged": "15.4.3",
+		"tsup": "8.3.0",
+		"typescript": "5.4.5",
+		"vitest": "3.2.4"
+	},
+	"homepage": "https://github.com/runespoor-engineering/{repo-name}/#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/runespoor-engineering/{repo-name}"
+	},
+	"bugs": {
+		"url": "https://github.com/runespoor-engineering/{repo-name}/issues"
+	},
+	"author": {
+		"name": "BorysShulyak",
+		"email": "borysshulyak@gmail.com",
+		"url": "https://github.com/BorysShulyak"
+	},
+	"maintainers": [
+		{
+			"name": "BorysShulyak",
+			"email": "borysshulyak@gmail.com",
+			"url": "https://github.com/BorysShulyak"
+		}
+	],
+	"keywords": [
+		"eslint",
+		"cli",
+		"javascript",
+		"linter",
+		"runespoor"
+	],
+	"license": "MIT",
+	"engines": {
+		"node": ">=20.9.0",
+		"pnpm": ">=9.15.3"
+	}
+}

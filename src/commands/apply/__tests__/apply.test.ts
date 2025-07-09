@@ -21,19 +21,19 @@ import { apply } from "../apply";
 vi.mock("node:child_process");
 vi.mock("node:fs");
 vi.mock(
-	"../../utils/changeFileMeta/getDateFromChangeFileName/getDateFromChangeFileName",
+	"../../../utils/changeFileMeta/getDateFromChangeFileName/getDateFromChangeFileName",
 );
-vi.mock("../../utils/filesData/getChangeFileData");
-vi.mock("../../utils/filesData/getChangeFilesPaths");
-vi.mock("../../utils/filesData/getPackageJsonData");
-vi.mock("../../utils/filesOperations/createChangelogJsonFile");
-vi.mock("../../utils/filesOperations/createChangelogTextFile");
-vi.mock("../../utils/filesOperations/modifyChangelog");
-vi.mock("../../utils/filesOperations/modifyPackageVersion");
-vi.mock("../../utils/paths/getChangelogJsonFilePath");
-vi.mock("../../utils/paths/getChangelogTextFilePath");
-vi.mock("../../utils/paths/getPackageJsonFilePath");
-vi.mock("../../utils/semver/bumpSemver");
+vi.mock("../../../utils/filesData/getChangeFileData");
+vi.mock("../../../utils/filesData/getChangeFilesPaths");
+vi.mock("../../../utils/filesData/getPackageJsonData");
+vi.mock("../../../utils/filesOperations/createChangelogJsonFile");
+vi.mock("../../../utils/filesOperations/createChangelogTextFile");
+vi.mock("../../../utils/filesOperations/modifyChangelog");
+vi.mock("../../../utils/filesOperations/modifyPackageVersion");
+vi.mock("../../../utils/paths/getChangelogJsonFilePath");
+vi.mock("../../../utils/paths/getChangelogTextFilePath");
+vi.mock("../../../utils/paths/getPackageJsonFilePath");
+vi.mock("../../../utils/semver/bumpSemver");
 
 const mockExecSync = execSync as MockedFunction<typeof execSync>;
 const mockFs = fs as any;

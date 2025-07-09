@@ -2,7 +2,7 @@
 
 import { program } from "commander";
 
-import { apply } from "./commands/apply";
+import { apply } from "./commands/apply/apply";
 import { change } from "./commands/change";
 import { verify } from "./commands/verify";
 

@@ -1,0 +1,10 @@
+[
+	{
+		"version": "0.10.0",
+		"type": "minor",
+		"comment": "`apply` command: adjust command to accumulate the changes instead of applying them one by one",
+		"date": "Wed Jul 09 2025",
+		"author": "BorysShulyak",
+		"issueLinks": []
+	}
+]

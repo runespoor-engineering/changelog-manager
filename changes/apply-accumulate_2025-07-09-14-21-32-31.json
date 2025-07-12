@@ -1,6 +1,0 @@
-{
-	"comment": "`apply` command: adjust command to accumulate the changes instead of applying them one by one",
-	"type": "minor",
-	"author": "BorysShulyak",
-	"issueLinks": []
-}

@@ -1,6 +1,0 @@
-{
-	"comment": "`ci`: adjust `publish` workflow by joining separate jobs into one",
-	"type": "patch",
-	"author": "BorysShulyak",
-	"issueLinks": []
-}

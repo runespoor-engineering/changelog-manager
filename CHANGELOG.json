@@ -1,5 +1,13 @@
 [
 	{
+		"version": "0.10.1",
+		"type": "patch",
+		"comment": "`ci`: adjust `publish` workflow by joining separate jobs into one",
+		"date": "Sat Jul 12 2025",
+		"author": "BorysShulyak",
+		"issueLinks": []
+	},
+	{
 		"version": "0.10.0",
 		"type": "minor",
 		"comment": "`apply` command: adjust command to accumulate the changes instead of applying them one by one",
